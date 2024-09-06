@@ -12,10 +12,9 @@ A beautifully designed weather application built with Flutter. This app provides
 
 ## Screenshots 📱
 
-### Weather Details
 <p float="left">
-  <img src="assets/screenshots/screenshot1.png" alt="Weather Details" width="300" />
-  <img src="assets/screenshots/screenshot2.png" alt="Forecasts Details" width="300" /> 
+  <img src="assets/screenshots/screenshot1.png" alt="Weather Details" width="300"" />
+  <img src="assets/screenshots/screenshot2.png" alt="Forecasts Details" width="300" />
 </p>
 
 ## Installation and Setup 🚀
