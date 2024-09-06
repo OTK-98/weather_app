@@ -13,7 +13,7 @@ A beautifully designed weather application built with Flutter. This app provides
 ## Screenshots 📱
 
 <p float="left">
-  <img src="assets/screenshots/screenshot1.png" alt="Weather Details" width="300"" />
+  <img src="assets/screenshots/screenshot1.png" alt="Weather Details" width="300" />
   <img src="assets/screenshots/screenshot2.png" alt="Forecasts Details" width="300" />
 </p>
 
@@ -24,11 +24,7 @@ A beautifully designed weather application built with Flutter. This app provides
    ```bash
    git clone https://github.com/yourusername/weather-app.git
    ```
-<<<<<<< HEAD
 
-=======
-   
->>>>>>> e3c75a8f42b7a25e5b7b42b9857f7eb37771ffb9
 2. Navigate to the project directory:
 
    ```bash
@@ -77,11 +73,7 @@ lib/
 └── views/
     ├── weather.dart
     └── search_screen.dart
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> e3c75a8f42b7a25e5b7b42b9857f7eb37771ffb9
 ```
 
 ## Future Enhancements 🔮
