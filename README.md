@@ -24,7 +24,11 @@ A beautifully designed weather application built with Flutter. This app provides
    ```bash
    git clone https://github.com/yourusername/weather-app.git
    ```
+<<<<<<< HEAD
 
+=======
+   
+>>>>>>> e3c75a8f42b7a25e5b7b42b9857f7eb37771ffb9
 2. Navigate to the project directory:
 
    ```bash
@@ -73,7 +77,11 @@ lib/
 └── views/
     ├── weather.dart
     └── search_screen.dart
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> e3c75a8f42b7a25e5b7b42b9857f7eb37771ffb9
 ```
 
 ## Future Enhancements 🔮
