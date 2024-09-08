@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/models/forecast_model.dart';
+import 'package:weathero/controller/weather_forecast_controller.dart';
+import 'package:weathero/models/forecast_model.dart';
 
 class WeatherForecast extends StatelessWidget {
   final List<ForecastModel> forecast;
@@ -8,74 +9,47 @@ class WeatherForecast extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Group forecasts by date
-    Map<String, List<ForecastModel>> groupedForecasts = {};
-
-    for (var item in forecast) {
-      String date = item.time
-          .toIso8601String()
-          .substring(0, 10); // Format date as yyyy-MM-dd
-      if (!groupedForecasts.containsKey(date)) {
-        groupedForecasts[date] = [];
-      }
-      groupedForecasts[date]!.add(item);
-    }
+    final controller = WeatherForecastController(forecast);
+    Map<String, List<ForecastModel>> groupedForecasts =
+        controller.groupForecastsByDate();
 
     return Column(
-      children: groupedForecasts.entries.map((entry) {
-        String day = formatDay(DateTime.parse(entry.key));
-        String date = formatDate(DateTime.parse(entry.key));
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Text header
+        const Padding(
+          padding: EdgeInsets.fromLTRB(20, 16, 20, 10),
+          child: Text(
+            'Weekly Weather Forecast',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+        ),
+        // Forecast list
+        ...groupedForecasts.entries.map((entry) {
+          String formattedDate =
+              controller.formatDate(DateTime.parse(entry.key));
+          double minTemp = controller.getMinTemperature(entry.value);
+          double maxTemp = controller.getMaxTemperature(entry.value);
 
-        double minTemp =
-            entry.value.map((e) => e.tempNight).reduce((a, b) => a < b ? a : b);
-        double maxTemp =
-            entry.value.map((e) => e.tempDay).reduce((a, b) => a > b ? a : b);
-
-        return DayForecast(
-          day: day,
-          date: date,
-          weatherSummary:
-              entry.value.isNotEmpty ? entry.value[0].weatherDescription : '',
-          minTemp: minTemp,
-          maxTemp: maxTemp,
-          hourlyForecast: entry.value,
-        );
-      }).toList(),
+          return DayForecast(
+            date: formattedDate,
+            weatherSummary:
+                entry.value.isNotEmpty ? entry.value[0].weatherDescription : '',
+            minTemp: minTemp,
+            maxTemp: maxTemp,
+            hourlyForecast: entry.value,
+          );
+        }),
+      ],
     );
-  }
-
-  String formatDay(DateTime dateTime) {
-    return [
-      'Sunday',
-      'Monday',
-      'Tuesday',
-      'Wednesday',
-      'Thursday',
-      'Friday',
-      'Saturday'
-    ][dateTime.weekday % 7];
-  }
-
-  String formatDate(DateTime dateTime) {
-    return '${dateTime.day} ${[
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec'
-    ][dateTime.month - 1]}';
   }
 }
 
 class DayForecast extends StatelessWidget {
-  final String day;
   final String date;
   final String weatherSummary;
   final double minTemp;
@@ -84,7 +58,6 @@ class DayForecast extends StatelessWidget {
 
   const DayForecast({
     super.key,
-    required this.day,
     required this.date,
     required this.weatherSummary,
     required this.minTemp,
@@ -95,13 +68,13 @@ class DayForecast extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('$day, $date',
+            Text(date,
                 style:
                     const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             Row(
@@ -109,7 +82,7 @@ class DayForecast extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    const Icon(Icons.wb_sunny), // Placeholder icon
+                    const Icon(Icons.wb_sunny),
                     const SizedBox(width: 8),
                     Text(weatherSummary),
                   ],
@@ -122,7 +95,10 @@ class DayForecast extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: hourlyForecast
-                    .map((hour) => HourlyForecast(hour: hour))
+                    .map((hour) => Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                          child: HourlyForecast(hour: hour),
+                        ))
                     .toList(),
               ),
             ),
@@ -142,7 +118,7 @@ class HourlyForecast extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text('${hour.time.hour}:00'), // Example time format
+        Text('${hour.time.hour}:00'),
         Image.network(
           'http://openweathermap.org/img/wn/${hour.icon}@2x.png',
           height: 50,

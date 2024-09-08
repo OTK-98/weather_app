@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/models/weather_model.dart';
+import 'package:weathero/config/colors.dart';
+import 'package:weathero/models/weather_model.dart';
 
 class WeatherAdditionalDetails extends StatelessWidget {
   final WeatherModel weatherModel;
@@ -10,7 +11,7 @@ class WeatherAdditionalDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       margin: const EdgeInsets.all(16),
-      color: const Color(0xFF1b1c48),
+      color: CustomColors.fsCard,
       elevation: 4,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
@@ -23,48 +24,49 @@ class WeatherAdditionalDetails extends StatelessWidget {
             Expanded(
               child: Column(
                 children: [
-                  const Icon(Icons.thermostat_outlined, color: Colors.white),
+                  const Icon(Icons.thermostat_outlined,
+                      color: CustomColors.whiteColor),
                   const SizedBox(height: 10),
                   Text(
                     'Feels Like\n${weatherModel.feelsLike.round()}°',
                     textAlign: TextAlign.center,
-                    style: const TextStyle(color: Colors.white),
+                    style: const TextStyle(color: CustomColors.whiteColor),
                   ),
                 ],
               ),
             ),
             const VerticalDivider(
-              color: Colors.white,
+              color: CustomColors.whiteColor,
               thickness: 1,
               width: 32,
             ),
             Expanded(
               child: Column(
                 children: [
-                  const Icon(Icons.water, color: Colors.white),
+                  const Icon(Icons.water, color: CustomColors.whiteColor),
                   const SizedBox(height: 10),
                   Text(
                     'Humidity\n${weatherModel.humidity}%',
                     textAlign: TextAlign.center,
-                    style: const TextStyle(color: Colors.white),
+                    style: const TextStyle(color: CustomColors.whiteColor),
                   ),
                 ],
               ),
             ),
             const VerticalDivider(
-              color: Colors.white,
+              color: CustomColors.whiteColor,
               thickness: 1,
               width: 32,
             ),
             Expanded(
               child: Column(
                 children: [
-                  const Icon(Icons.air, color: Colors.white),
+                  const Icon(Icons.air, color: CustomColors.whiteColor),
                   const SizedBox(height: 10),
                   Text(
                     'Wind Speed\n${weatherModel.windSpeed} km/h',
                     textAlign: TextAlign.center,
-                    style: const TextStyle(color: Colors.white),
+                    style: const TextStyle(color: CustomColors.whiteColor),
                   ),
                 ],
               ),

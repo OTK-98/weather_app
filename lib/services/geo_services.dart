@@ -2,12 +2,12 @@ import 'dart:convert';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
-import 'package:weather_app/config/constants.dart';
+import 'package:weathero/config/constants.dart';
 
 class GeoService {
   Future<Map<String, double>> getCityCoordinates(String cityName) async {
     final response = await http.get(Uri.parse(
-        'http://api.openweathermap.org/geo/1.0/direct?q=$cityName&limit=1&appid=${ApiConfig.apiKey}'));
+        'http://api.openweathermap.org/geo/1.0/direct?q=$cityName&limit=1&appid=${ApiConfig.apiKey}&lang=en'));
     if (response.statusCode == 200) {
       final List<dynamic> data = jsonDecode(response.body);
       if (data.isNotEmpty) {

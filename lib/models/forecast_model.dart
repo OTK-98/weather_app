@@ -1,5 +1,5 @@
 class ForecastModel {
-  final DateTime time; // Added field for time
+  final DateTime time;
   final String day;
   final double tempDay;
   final double tempNight;
@@ -20,7 +20,7 @@ class ForecastModel {
     final dayOfWeek =
         ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][date.weekday % 7];
     return ForecastModel(
-      time: date, // Initialize time field
+      time: date,
       day: dayOfWeek,
       tempDay: json['main']['temp'].toDouble(),
       tempNight: json['main']['temp_min'].toDouble(),
