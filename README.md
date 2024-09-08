@@ -1,6 +1,6 @@
 # Weather App 🌦️
 
-A beautifully designed weather application built with Flutter. This app provides real-time weather information, forecasts, and city search functionality using the OpenWeatherMap API.
+Featuring a sleek and modern design, Weathero provides users with an easy-to-use interface to access real-time weather updates and detailed forecasts for the rest of the week. With a city search feature that supports Arabic and English, you can easily find comprehensive weather information for any location, ensuring you are always informed and well-prepared for changing weather conditions.
 
 ## Features ✨
 
@@ -13,8 +13,18 @@ A beautifully designed weather application built with Flutter. This app provides
 ## Screenshots 📱
 
 <p float="left">
-  <img src="assets/screenshots/screenshot1.png" alt="Weather Details" width="300" />
-  <img src="assets/screenshots/screenshot2.png" alt="Forecasts Details" width="300" />
+  <img src="assets/screenshots/splash.png" alt="splash" width="300" />
+  <img src="assets/screenshots/permission.png" alt="permission" width="300" />
+  <img src="assets/screenshots/weathero-1.png" alt="Weathero-1" width="300" />
+  <img src="assets/screenshots/weathero-2.png" alt="Weathero-2" width="300" />
+  <img src="assets/screenshots/weathero-3.png" alt="Weathero-3" width="300" />
+  <img src="assets/screenshots/forecast.png" alt="forecast" width="300" />
+  <img src="assets/screenshots/search-1.png" alt="search-1" width="300" />
+  <img src="assets/screenshots/search-2.png" alt="search-2" width="300" />
+  <img src="assets/screenshots/search-3.png" alt="search-3" width="300" />
+  <img src="assets/screenshots/offline.png" alt="offline" width="300" />
+
+  <img src="assets/screenshots/screenshot2.png" alt="Forecasts" width="300" />
 </p>
 
 ## Installation and Setup 🚀
@@ -22,13 +32,13 @@ A beautifully designed weather application built with Flutter. This app provides
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/weather-app.git
+   git clone https://github.com/OTK-98/weathero.git
    ```
 
 2. Navigate to the project directory:
 
    ```bash
-   cd weather-app
+   cd weathero
    ```
 
 3. Install the necessary dependencies:
@@ -43,7 +53,9 @@ A beautifully designed weather application built with Flutter. This app provides
    - Add the following line:
 
      ```plaintext
-     WEATHER_API_KEY=your_api_key_here
+     API_KEY=your_api_key_here
+     BASE_URL=your_api_current_weather_here
+     FORECAST_URL=your_api_forecast_weather_here
      ```
 
 5. Run the app:
@@ -61,8 +73,9 @@ A beautifully designed weather application built with Flutter. This app provides
 ## Project Structure 📁
 
 ```
+
 lib/
-│
+│   ...
 ├── models/
 │   ├── forecast_model.dart
 │   └── weather_model.dart
@@ -70,9 +83,11 @@ lib/
 ├── services/
 │   ├── weather_services.dart
 │   └── geo_services.dart
+│
 └── views/
-    ├── weather.dart
+    ├── weather_screen.dart
     └── search_screen.dart
+    ...
 
 ```
 
